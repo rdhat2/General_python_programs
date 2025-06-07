@@ -1,3 +1,5 @@
+from collections import deque
+
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -6,27 +8,27 @@ class TreeNode:
 
 def level_order_traversal(root):
     if root is None:
-        return
+        return []
+    # res = []
+    queue = deque([root]) 
+    level = 0
+
     
-    queue = [root]  # Manual queue using a list
-    
-    while len(queue) > 0:
+    while queue:
         level_size = len(queue)
         level_nodes = []
         
         for _ in range(level_size):
-            node = queue.pop(0)  # Pop first element (FIFO)
-            level_nodes.append(node.val)
+            node = queue.popleft()  
+            level_nodes.append(str(node.val))
 
             if node.left:
                 queue.append(node.left)
             if node.right:
                 queue.append(node.right)
-        
-        # Print level nodes manually without `join()`
-        for i in range(len(level_nodes)):
-            print(level_nodes[i], end=" ")
-        print() 
+            
+            
+        print(" ".join(level_nodes))
 
 # Example Usage:
 root = TreeNode(1)

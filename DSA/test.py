@@ -1,5 +1,1 @@
-str = 'abc'
-str2 = 'def'
-
-str3 = str + str2
-print(str3)
+print(3 // -2)
